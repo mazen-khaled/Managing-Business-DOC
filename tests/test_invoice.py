@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
-from document_system.document import Invoice
-from document_system.exceptions import (MissingFieldError, ItemValidationError, 
+from document_system import Invoice
+from document_system import (MissingFieldError, ItemValidationError, 
                          AmountExceededError, ValidationError)
 
 class TestInvoice(unittest.TestCase):
