@@ -1,12 +1,15 @@
 import unittest
-from datetime import datetime
-from document_system.document import Document
-from document_system.exceptions import ValidationError
+from document_system import Document
 
 class TestDocument(unittest.TestCase):
     def setUp(self):
         self.doc_data = {'field1': 'value1'}
-        self.doc = Document('TEST-001', 'admin', self.doc_data)
+        
+        class TestDoc(Document):
+            def validate(self):
+                pass
+                
+        self.doc = TestDoc('TEST-001', 'admin', self.doc_data)
     
     def test_initialization(self):
         self.assertEqual(self.doc.docname, 'TEST-001')

@@ -16,5 +16,35 @@ Python package for managing business documents with validation.
   Detailed error classes for different validation failures
 - **Unit Tests**  
   Complete test coverage for all functionality
+
+# V2: SOLID Principles Refactoring for Document System
+
+## 1. Single Responsibility Principle (SRP) Changes
+- Created separate validator classes to handle validation logic
+- Updated `Document` and `Invoice` classes to separate their concerns
+  - `Document` now focuses solely on document properties and core functionality
+  - `Invoice` handles invoice-specific behavior separately
+
+## 2. Open/Closed Principle (OCP) Changes
+- Created abstract base validator: `DocumentValidator`
+  - System is open for extension (new validators can be added)
+  - Closed for modification (existing validator interface remains stable)
+- New validators can be added without changing existing validation code
+
+## 3. Liskov Substitution Principle (LSP) Changes
+- Ensured all validator subclasses properly implement `validate()` method
+  - All subclasses must implement `validate()` from `Document` class
+  - Validator subclasses can be used interchangeably without breaking functionality
+- Maintained consistent behavior across all validator implementations.
+
+## 4. Dependency Inversion Principle (DIP) Changes
+- High-level `Invoice` class now depends on `Validator` abstraction
+  - Constructor pattern: `Invoice(docname, created_by, data, validator=None)` .
+  - Can pass specific Validator Function or not.
+- Removed direct dependencies on concrete validator implementations
+- Validation logic can be easily swapped or mocked for testing
+
+# Run Tests
+
 ```bash
-python -m unittest discover
+python -m unittest discover -s .\tests\
