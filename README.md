@@ -1,6 +1,6 @@
 # Document System
 
-Python package for managing business documents with validation and lifecycle management.
+Python package for managing business documents with validation and Follows Soild Principles.
 
 ## Features
 
